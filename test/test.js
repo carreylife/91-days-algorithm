@@ -35,19 +35,45 @@
 
 // console.log(shortestToChar(s, c), "---c----");
 
-function reverseArray(arr) {
-  let left = 0;
-  let right = arr.length - 1;
+/**
+ *
+ * @param {*} arr
+ * @returns
+ */
+// function reverseArray(arr) {
+//   let left = 0;
+//   let right = arr.length - 1;
 
-  while (left < right) {
-    console.log(left, right, '---right---');
-    let temp = arr[left];
-    arr[left++] = arr[right];
-    arr[right--] = temp;
+//   while (left < right) {
+//     console.log(left, right, '---right---');
+//     let temp = arr[left];
+//     arr[left++] = arr[right];
+//     arr[right--] = temp;
+//   }
+//   return arr;
+// }
+
+// var a = reverseArray([1,3,4,7,6,2])
+
+function yuesefu(n, num) {
+  const arr = Array.from({ length: n }, (v, i) => i + 1);
+
+  // 留下约瑟夫和他的朋友俩活口
+  for (let i = 0; arr.length > 2; i++) {
+    for (let j = 1; j < num; j++) {
+      if (i >= arr.length) {
+        i = 0;
+      }
+      i = i + 1 < arr.length ? i + 1 : 0;
+      if (j === num - 1) {
+        // 自杀一个后当前指针也得-1
+        arr.splice(i, 1);
+        i--;
+      }
+    }
   }
+  console.log(arr, '----1111-----')
   return arr;
 }
 
-var a = reverseArray([1,3,4,7,6,2])
-
-console.log(a, '--a---')
+yuesefu(41, 3);
